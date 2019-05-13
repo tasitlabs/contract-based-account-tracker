@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {
   Grid,
   Select,
@@ -7,14 +7,14 @@ import {
   Checkbox,
   createStyles,
   withStyles,
-} from '@material-ui/core';
+} from '@material-ui/core'
 
 const filterStyles = theme =>
   createStyles({
     orderBySelect: {
       marginLeft: theme.spacing.unit,
     },
-  });
+  })
 
 const Filter = ({
   classes,
@@ -63,8 +63,8 @@ const Filter = ({
       />
     </Grid>
   </Grid>
-);
+)
 
-const StyledFilter = withStyles(filterStyles)(Filter);
+const StyledFilter = withStyles(filterStyles)(Filter)
 
-export default StyledFilter;
+export default StyledFilter

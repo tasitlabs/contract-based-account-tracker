@@ -1,12 +1,12 @@
-import React from 'react';
-import { Grid, Typography, createStyles, withStyles } from '@material-ui/core';
+import React from 'react'
+import { Grid, Typography, createStyles, withStyles } from '@material-ui/core'
 
 const errorStyles = theme =>
   createStyles({
     errorText: {
       fontFamily: 'Inconsolata, Monaco, monospace',
     },
-  });
+  })
 
 const Error = ({ classes, error }) => (
   <Grid container direction="column">
@@ -25,6 +25,6 @@ const Error = ({ classes, error }) => (
       </Grid>
     </Grid>
   </Grid>
-);
+)
 
-export default withStyles(errorStyles)(Error);
+export default withStyles(errorStyles)(Error)

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {
   Card,
   CardContent,
@@ -8,7 +8,7 @@ import {
   Typography,
   createStyles,
   withStyles,
-} from '@material-ui/core';
+} from '@material-ui/core'
 
 const gravatarStyles = theme =>
   createStyles({
@@ -30,7 +30,7 @@ const gravatarStyles = theme =>
       textOverflow: 'ellipsis',
       overflow: 'hidden',
     },
-  });
+  })
 
 const Gravatar = ({ classes, id, displayName, imageUrl, owner }) => (
   <Grid item>
@@ -63,16 +63,16 @@ const Gravatar = ({ classes, id, displayName, imageUrl, owner }) => (
       </CardActionArea>
     </Card>
   </Grid>
-);
+)
 
-const StyledGravatar = withStyles(gravatarStyles)(Gravatar);
+const StyledGravatar = withStyles(gravatarStyles)(Gravatar)
 
 const gravatarsStyles = theme =>
   createStyles({
     title: {
       marginTop: theme.spacing.unit * 2,
     },
-  });
+  })
 
 const Gravatars = ({ classes, gravatars }) => (
   <Grid container direction="column" spacing={16}>
@@ -89,6 +89,6 @@ const Gravatars = ({ classes, gravatars }) => (
       </Grid>
     </Grid>
   </Grid>
-);
+)
 
-export default withStyles(gravatarsStyles)(Gravatars);
+export default withStyles(gravatarsStyles)(Gravatars)

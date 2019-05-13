@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import ApolloClient, { gql, InMemoryCache } from 'apollo-boost';
-import { ApolloProvider, Query } from 'react-apollo';
+import React, { Component } from 'react'
+import ApolloClient, { gql, InMemoryCache } from 'apollo-boost'
+import { ApolloProvider, Query } from 'react-apollo'
 import {
   Grid,
   LinearProgress,
@@ -10,23 +10,23 @@ import {
   DialogContentText,
   DialogTitle,
   Button,
-} from '@material-ui/core';
-import './App.css';
-import Header from './components/Header';
-import Error from './components/Error';
-import Gravatars from './components/Gravatars';
-import Filter from './components/Filter';
+} from '@material-ui/core'
+import './App.css'
+import Header from './components/Header'
+import Error from './components/Error'
+import Gravatars from './components/Gravatars'
+import Filter from './components/Filter'
 
 if (!process.env.REACT_APP_GRAPHQL_ENDPOINT) {
   throw new Error(
     'REACT_APP_GRAPHQL_ENDPOINT environment variable not defined'
-  );
+  )
 }
 
 const client = new ApolloClient({
   uri: process.env.REACT_APP_GRAPHQL_ENDPOINT,
   cache: new InMemoryCache(),
-});
+})
 
 const GRAVATARS_QUERY = gql`
   query gravatars($where: Gravatar_filter!, $orderBy: Gravatar_orderBy!) {
@@ -42,32 +42,32 @@ const GRAVATARS_QUERY = gql`
       imageUrl
     }
   }
-`;
+`
 
 class App extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       withImage: false,
       withName: false,
       orderBy: 'displayName',
       showHelpDialog: false,
-    };
+    }
   }
 
   toggleHelpDialog = () => {
     this.setState(state => ({
       ...state,
       showHelpDialog: !state.showHelpDialog,
-    }));
+    }))
   };
 
   gotoQuickStartGuide = () => {
-    window.location.href = 'https://tasit.io';
+    window.location.href = 'https://tasit.io'
   };
 
   render() {
-    const { withImage, withName, orderBy, showHelpDialog } = this.state;
+    const { withImage, withName, orderBy, showHelpDialog } = this.state
 
     return (
       <ApolloProvider client={client}>
@@ -116,7 +116,7 @@ class App extends Component {
                       <Error error={error} />
                     ) : (
                       <Gravatars gravatars={data.gravatars} />
-                    );
+                    )
                   }}
                 </Query>
               </Grid>
@@ -150,8 +150,8 @@ class App extends Component {
           </Dialog>
         </div>
       </ApolloProvider>
-    );
+    )
   }
 }
 
-export default App;
+export default App
