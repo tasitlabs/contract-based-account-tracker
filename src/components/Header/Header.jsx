@@ -5,7 +5,9 @@ import HelpIcon from '@material-ui/icons/Help'
 const Header = ({ onHelp }) => (
   <Grid container direction="row" alignItems="center" spacing={16}>
     <Grid item>
-      <Typography variant="title">The Graph ETHDenver dApp</Typography>
+      <Typography variant="title">
+        Tasit The Graph Hackathon Web Dapp
+      </Typography>
     </Grid>
     <Grid item>
       <IconButton

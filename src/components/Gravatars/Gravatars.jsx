@@ -37,10 +37,18 @@ const Gravatar = ({ classes, id, displayName, imageUrl, owner }) => (
     <Card>
       <CardActionArea className={classes.actionArea}>
         {imageUrl && (
-          <CardMedia className={classes.image} image={imageUrl} title={displayName} />
+          <CardMedia
+            className={classes.image}
+            image={imageUrl}
+            title={displayName}
+          />
         )}
         <CardContent>
-          <Typography variant="h6" component="h3" className={classes.displayName}>
+          <Typography
+            variant="h6"
+            component="h3"
+            className={classes.displayName}
+          >
             {displayName || '—'}
           </Typography>
           <Typography color="textSecondary">ID</Typography>

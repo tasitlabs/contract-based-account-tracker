@@ -18,7 +18,9 @@ import Gravatars from './components/Gravatars'
 import Filter from './components/Filter'
 
 if (!process.env.REACT_APP_GRAPHQL_ENDPOINT) {
-  throw new Error('REACT_APP_GRAPHQL_ENDPOINT environment variable not defined')
+  throw new Error(
+    'REACT_APP_GRAPHQL_ENDPOINT environment variable not defined'
+  )
 }
 
 const client = new ApolloClient({
@@ -28,7 +30,12 @@ const client = new ApolloClient({
 
 const GRAVATARS_QUERY = gql`
   query gravatars($where: Gravatar_filter!, $orderBy: Gravatar_orderBy!) {
-    gravatars(first: 100, where: $where, orderBy: $orderBy, orderDirection: asc) {
+    gravatars(
+      first: 100
+      where: $where
+      orderBy: $orderBy
+      orderDirection: asc
+    ) {
       id
       owner
       displayName
@@ -49,12 +56,15 @@ class App extends Component {
   }
 
   toggleHelpDialog = () => {
-    this.setState(state => ({ ...state, showHelpDialog: !state.showHelpDialog }))
-  }
+    this.setState(state => ({
+      ...state,
+      showHelpDialog: !state.showHelpDialog,
+    }))
+  };
 
   gotoQuickStartGuide = () => {
-    window.location.href = 'https://thegraph.com/docs/quick-start'
-  }
+    window.location.href = 'https://tasit.io'
+  };
 
   render() {
     const { withImage, withName, orderBy, showHelpDialog } = this.state
@@ -68,12 +78,20 @@ class App extends Component {
               orderBy={orderBy}
               withImage={withImage}
               withName={withName}
-              onOrderBy={field => this.setState(state => ({ ...state, orderBy: field }))}
+              onOrderBy={field =>
+                this.setState(state => ({ ...state, orderBy: field }))
+              }
               onToggleWithImage={() =>
-                this.setState(state => ({ ...state, withImage: !state.withImage }))
+                this.setState(state => ({
+                  ...state,
+                  withImage: !state.withImage,
+                }))
               }
               onToggleWithName={() =>
-                this.setState(state => ({ ...state, withName: !state.withName }))
+                this.setState(state => ({
+                  ...state,
+                  withName: !state.withName,
+                }))
               }
             />
             <Grid item>
@@ -90,7 +108,10 @@ class App extends Component {
                 >
                   {({ data, error, loading }) => {
                     return loading ? (
-                      <LinearProgress variant="query" style={{ width: '100%' }} />
+                      <LinearProgress
+                        variant="query"
+                        style={{ width: '100%' }}
+                      />
                     ) : error ? (
                       <Error error={error} />
                     ) : (
@@ -107,19 +128,23 @@ class App extends Component {
             onClose={this.toggleHelpDialog}
             aria-labelledby="help-dialog"
           >
-            <DialogTitle id="help-dialog">{'Show Quick Guide?'}</DialogTitle>
+            <DialogTitle id="help-dialog">{'What\'s Tasit?'}</DialogTitle>
             <DialogContent>
               <DialogContentText>
-                We have prepared a quick guide for you to get started with The Graph at
-                this hackathon. Shall we take you there now?
+                There's more info about the Tasit project over at tasit.io.
+                Should we take you there now?
               </DialogContentText>
             </DialogContent>
             <DialogActions>
               <Button onClick={this.toggleHelpDialog} color="primary">
                 Nah, I'm good
               </Button>
-              <Button onClick={this.gotoQuickStartGuide} color="primary" autoFocus>
-                Yes, pease
+              <Button
+                onClick={this.gotoQuickStartGuide}
+                color="primary"
+                autoFocus
+              >
+                Yes, please
               </Button>
             </DialogActions>
           </Dialog>

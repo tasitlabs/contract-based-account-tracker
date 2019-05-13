@@ -18,7 +18,9 @@ const Error = ({ classes, error }) => (
     <Grid item>
       <Grid container>
         <Typography mode="paragraph" color="secondary">
-          <pre className={classes.errorText}>{JSON.stringify(error, undefined, 2)}</pre>
+          <pre className={classes.errorText}>
+            {JSON.stringify(error, undefined, 2)}
+          </pre>
         </Typography>
       </Grid>
     </Grid>
