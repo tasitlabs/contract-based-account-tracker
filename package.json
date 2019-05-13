@@ -1,5 +1,5 @@
 {
-  "name": "ethdenver-dapp",
+  "name": "the-graph-hackathon-web-dapp",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -20,6 +20,11 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tasitlabs/the-graph-hackathon-web-dapp.git"
   },
   "browserslist": [
     ">0.2%",
