@@ -1,5 +1,5 @@
 {
-  "name": "the-graph-hackathon-web-dapp",
+  "name": "contract-based-account-tracker",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -35,7 +35,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tasitlabs/the-graph-hackathon-web-dapp.git"
+    "url": "https://github.com/tasitlabs/contract-based-account-tracker.git"
   },
   "browserslist": [
     ">0.2%",
