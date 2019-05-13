@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Card,
   CardContent,
@@ -8,7 +8,7 @@ import {
   Typography,
   createStyles,
   withStyles,
-} from "@material-ui/core";
+} from '@material-ui/core';
 
 const gravatarStyles = theme =>
   createStyles({
@@ -19,16 +19,16 @@ const gravatarStyles = theme =>
       height: 150,
     },
     displayName: {
-      textOverflow: "ellipsis",
-      overflow: "hidden",
+      textOverflow: 'ellipsis',
+      overflow: 'hidden',
     },
     id: {
-      textOverflow: "ellipsis",
-      overflow: "hidden",
+      textOverflow: 'ellipsis',
+      overflow: 'hidden',
     },
     owner: {
-      textOverflow: "ellipsis",
-      overflow: "hidden",
+      textOverflow: 'ellipsis',
+      overflow: 'hidden',
     },
   });
 
@@ -49,7 +49,7 @@ const Gravatar = ({ classes, id, displayName, imageUrl, owner }) => (
             component="h3"
             className={classes.displayName}
           >
-            {displayName || "—"}
+            {displayName || '—'}
           </Typography>
           <Typography color="textSecondary">ID</Typography>
           <Typography component="p" className={classes.id}>

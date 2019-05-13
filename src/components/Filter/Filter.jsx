@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Grid,
   Select,
@@ -7,7 +7,7 @@ import {
   Checkbox,
   createStyles,
   withStyles,
-} from "@material-ui/core";
+} from '@material-ui/core';
 
 const filterStyles = theme =>
   createStyles({

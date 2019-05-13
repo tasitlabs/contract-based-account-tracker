@@ -1,10 +1,10 @@
-import React from "react";
-import { Grid, Typography, createStyles, withStyles } from "@material-ui/core";
+import React from 'react';
+import { Grid, Typography, createStyles, withStyles } from '@material-ui/core';
 
 const errorStyles = theme =>
   createStyles({
     errorText: {
-      fontFamily: "Inconsolata, Monaco, monospace",
+      fontFamily: 'Inconsolata, Monaco, monospace',
     },
   });
 
