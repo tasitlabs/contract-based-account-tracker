@@ -9,7 +9,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  Button
+  Button,
 } from "@material-ui/core";
 import "./App.css";
 import Header from "./components/Header";
@@ -25,7 +25,7 @@ if (!process.env.REACT_APP_GRAPHQL_ENDPOINT) {
 
 const client = new ApolloClient({
   uri: process.env.REACT_APP_GRAPHQL_ENDPOINT,
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
 });
 
 const GRAVATARS_QUERY = gql`
@@ -51,14 +51,14 @@ class App extends Component {
       withImage: false,
       withName: false,
       orderBy: "displayName",
-      showHelpDialog: false
+      showHelpDialog: false,
     };
   }
 
   toggleHelpDialog = () => {
     this.setState(state => ({
       ...state,
-      showHelpDialog: !state.showHelpDialog
+      showHelpDialog: !state.showHelpDialog,
     }));
   };
 
@@ -84,13 +84,13 @@ class App extends Component {
               onToggleWithImage={() =>
                 this.setState(state => ({
                   ...state,
-                  withImage: !state.withImage
+                  withImage: !state.withImage,
                 }))
               }
               onToggleWithName={() =>
                 this.setState(state => ({
                   ...state,
-                  withName: !state.withName
+                  withName: !state.withName,
                 }))
               }
             />
@@ -101,9 +101,9 @@ class App extends Component {
                   variables={{
                     where: {
                       ...(withImage ? { imageUrl_starts_with: "http" } : {}),
-                      ...(withName ? { displayName_not: "" } : {})
+                      ...(withName ? { displayName_not: "" } : {}),
                     },
-                    orderBy: orderBy
+                    orderBy: orderBy,
                   }}
                 >
                   {({ data, error, loading }) => {
