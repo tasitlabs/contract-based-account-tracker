@@ -38,9 +38,6 @@ const GRAVATARS_QUERY = gql`
       orderDirection: asc
     ) {
       id
-      owner
-      displayName
-      imageUrl
     }
   }
 `
@@ -51,7 +48,7 @@ class App extends Component {
     this.state = {
       withImage: false,
       withName: false,
-      orderBy: 'displayName',
+      orderBy: 'id',
       showHelpDialog: false,
     }
   }
@@ -100,10 +97,7 @@ class App extends Component {
                 <Query
                   query={GRAVATARS_QUERY}
                   variables={{
-                    where: {
-                      ...(withImage ? { imageUrl_starts_with: 'http' } : {}),
-                      ...(withName ? { displayName_not: '' } : {}),
-                    },
+                    where: {},
                     orderBy: orderBy,
                   }}
                 >

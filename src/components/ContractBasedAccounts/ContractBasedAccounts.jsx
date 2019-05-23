@@ -14,39 +14,19 @@ const contractBasedAccountStyles = theme =>
     actionArea: {
       maxWidth: 300,
     },
-    displayName: {
-      textOverflow: 'ellipsis',
-      overflow: 'hidden',
-    },
     id: {
-      textOverflow: 'ellipsis',
-      overflow: 'hidden',
-    },
-    owner: {
       textOverflow: 'ellipsis',
       overflow: 'hidden',
     },
   })
 
-const ContractBasedAccount = ({ classes, id, displayName, owner }) => (
+const ContractBasedAccount = ({ classes, id }) => (
   <Grid item>
     <Card>
       <CardActionArea className={classes.actionArea}>
         <CardContent>
-          <Typography
-            variant="h6"
-            component="h3"
-            className={classes.displayName}
-          >
-            {displayName || '—'}
-          </Typography>
-          <Typography color="textSecondary">ID</Typography>
-          <Typography component="p" className={classes.id}>
+          <Typography variant="h6" component="h3" className={classes.id}>
             {id}
-          </Typography>
-          <Typography color="textSecondary">Owner</Typography>
-          <Typography component="p" className={classes.owner}>
-            {owner}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -69,7 +49,10 @@ const ContractBasedAccounts = ({ classes, contractBasedAccounts }) => (
   <Grid container direction="column" spacing={16}>
     <Grid item>
       <Typography variant="title" className={classes.title}>
-        {contractBasedAccounts.length} ContractBasedAccounts
+        Gnosis Safe
+      </Typography>
+      <Typography color="textSecondary">
+        {contractBasedAccounts.length} contract-based accounts
       </Typography>
     </Grid>
     <Grid item>

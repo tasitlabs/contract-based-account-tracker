@@ -11,7 +11,7 @@ const errorStyles = theme =>
 const Error = ({ classes, error }) => (
   <Grid container direction="column">
     <Grid item>
-      <Typography variant="h6" component="h3" className={classes.displayName}>
+      <Typography variant="h6" component="h3" className={classes.id}>
         Error
       </Typography>
     </Grid>
