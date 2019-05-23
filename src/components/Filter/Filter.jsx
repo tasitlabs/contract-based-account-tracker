@@ -4,7 +4,6 @@ import {
   Select,
   FormControlLabel,
   MenuItem,
-  Checkbox,
   createStyles,
   withStyles,
 } from '@material-ui/core'
@@ -16,35 +15,9 @@ const filterStyles = theme =>
     },
   })
 
-const Filter = ({
-  classes,
-  onToggleWithName,
-  onToggleWithImage,
-  onOrderBy,
-  withName,
-  withImage,
-  orderBy,
-}) => (
+const Filter = ({ classes, onOrderBy, orderBy }) => (
   <Grid item>
     <Grid container direction="row">
-      <FormControlLabel
-        control={
-          <Checkbox
-            checked={withName}
-            onChange={event => onToggleWithName && onToggleWithName()}
-          />
-        }
-        label="With names"
-      />
-      <FormControlLabel
-        control={
-          <Checkbox
-            checked={withImage}
-            onChange={event => onToggleWithImage && onToggleWithImage()}
-          />
-        }
-        label="With images"
-      />
       <FormControlLabel
         control={
           <Select
@@ -53,6 +26,7 @@ const Filter = ({
             onChange={event => onOrderBy && onOrderBy(event.target.value)}
           >
             <MenuItem value="id">ID</MenuItem>
+            <MenuItem value="timeCreated">Time</MenuItem>
           </Select>
         }
         label="Order By:"

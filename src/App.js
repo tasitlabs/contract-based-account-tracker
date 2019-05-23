@@ -50,9 +50,10 @@ const GNOSIS_SAFE_QUERY = gql`
       first: $first
       where: $where
       orderBy: $orderBy
-      orderDirection: asc
+      orderDirection: desc
     ) {
       id
+      timeCreated
     }
   }
 `
@@ -67,9 +68,10 @@ const ARGENT_QUERY = gql`
       first: $first
       where: $where
       orderBy: $orderBy
-      orderDirection: asc
+      orderDirection: desc
     ) {
       id
+      timeCreated
     }
   }
 `
@@ -78,9 +80,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      withImage: false,
-      withName: false,
-      orderBy: 'id',
+      orderBy: 'timeCreated',
       showHelpDialog: false,
     }
   }
@@ -97,8 +97,7 @@ class App extends Component {
   }
 
   render() {
-    const { withImage, withName, orderBy, showHelpDialog } = this.state
-    const first = MAX_QUERY_AMOUNT
+    const { orderBy, showHelpDialog } = this.state
 
     return (
       <ApolloProvider client={clientDefault}>
@@ -107,22 +106,8 @@ class App extends Component {
             <Header onHelp={this.toggleHelpDialog} />
             <Filter
               orderBy={orderBy}
-              withImage={withImage}
-              withName={withName}
               onOrderBy={field =>
                 this.setState(state => ({ ...state, orderBy: field }))
-              }
-              onToggleWithImage={() =>
-                this.setState(state => ({
-                  ...state,
-                  withImage: !state.withImage,
-                }))
-              }
-              onToggleWithName={() =>
-                this.setState(state => ({
-                  ...state,
-                  withName: !state.withName,
-                }))
               }
             />
             <Grid item>
@@ -147,6 +132,9 @@ class App extends Component {
                       <ContractBasedAccounts
                         contractBasedAccounts={data.contractBasedAccounts}
                         name={'Gnosis Safe'}
+                        notes={
+                          "Note: The iOS and Android apps haven't moved over to the new contract version yet."
+                        }
                       />
                     )
                   }}
@@ -176,6 +164,7 @@ class App extends Component {
                       <ContractBasedAccounts
                         contractBasedAccounts={data.contractBasedAccounts}
                         name={'Argent'}
+                        notes={''}
                       />
                     )
                   }}
