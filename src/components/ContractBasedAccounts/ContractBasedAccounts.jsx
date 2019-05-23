@@ -3,20 +3,16 @@ import {
   Card,
   CardContent,
   CardActionArea,
-  CardMedia,
   Grid,
   Typography,
   createStyles,
   withStyles,
 } from '@material-ui/core'
 
-const gravatarStyles = theme =>
+const contractBasedAccountStyles = theme =>
   createStyles({
     actionArea: {
       maxWidth: 300,
-    },
-    image: {
-      height: 150,
     },
     displayName: {
       textOverflow: 'ellipsis',
@@ -32,17 +28,10 @@ const gravatarStyles = theme =>
     },
   })
 
-const Gravatar = ({ classes, id, displayName, imageUrl, owner }) => (
+const ContractBasedAccount = ({ classes, id, displayName, owner }) => (
   <Grid item>
     <Card>
       <CardActionArea className={classes.actionArea}>
-        {imageUrl && (
-          <CardMedia
-            className={classes.image}
-            image={imageUrl}
-            title={displayName}
-          />
-        )}
         <CardContent>
           <Typography
             variant="h6"
@@ -65,30 +54,35 @@ const Gravatar = ({ classes, id, displayName, imageUrl, owner }) => (
   </Grid>
 )
 
-const StyledGravatar = withStyles(gravatarStyles)(Gravatar)
+const StyledContractBasedAccount = withStyles(contractBasedAccountStyles)(
+  ContractBasedAccount
+)
 
-const gravatarsStyles = theme =>
+const contractBasedAccountsStyles = theme =>
   createStyles({
     title: {
       marginTop: theme.spacing.unit * 2,
     },
   })
 
-const Gravatars = ({ classes, gravatars }) => (
+const ContractBasedAccounts = ({ classes, contractBasedAccounts }) => (
   <Grid container direction="column" spacing={16}>
     <Grid item>
       <Typography variant="title" className={classes.title}>
-        {gravatars.length} Gravatars
+        {contractBasedAccounts.length} ContractBasedAccounts
       </Typography>
     </Grid>
     <Grid item>
       <Grid container direction="row" spacing={16}>
-        {gravatars.map(gravatar => (
-          <StyledGravatar key={gravatar.id} {...gravatar} />
+        {contractBasedAccounts.map(contractBasedAccount => (
+          <StyledContractBasedAccount
+            key={contractBasedAccount.id}
+            {...contractBasedAccount}
+          />
         ))}
       </Grid>
     </Grid>
   </Grid>
 )
 
-export default withStyles(gravatarsStyles)(Gravatars)
+export default withStyles(contractBasedAccountsStyles)(ContractBasedAccounts)
