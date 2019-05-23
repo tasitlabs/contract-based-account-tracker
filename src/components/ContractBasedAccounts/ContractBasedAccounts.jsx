@@ -22,10 +22,19 @@ const contractBasedAccountStyles = theme =>
     },
   })
 
+const onPress = id => {
+  window.open(`https://etherscan.io/address/${id}`, '_blank')
+}
+
 const ContractBasedAccount = ({ classes, id, timeCreated }) => (
   <Grid item>
     <Card>
-      <CardActionArea className={classes.actionArea}>
+      <CardActionArea
+        className={classes.actionArea}
+        onClick={() => {
+          onPress(id)
+        }}
+      >
         <CardContent>
           <Typography variant="h6" component="h3" className={classes.id}>
             {id}
