@@ -23,5 +23,5 @@ npm start
 2. Copy the GraphQL HTTP endpoint (`hhttps://api.thegraph.com/subgraphs/name/tasitlabs/gnosis-safe`)
 3. Write it to `.env` in this directory:
    ```sh
-   echo "REACT_APP_GRAPHQL_ENDPOINT=https://api.thegraph.com/subgraphs/name/tasitlabs/gnosis-safe" > .env
+   echo "REACT_APP_GRAPHQL_ENDPOINT_GNOSIS_SAFE=https://api.thegraph.com/subgraphs/name/tasitlabs/gnosis-safe" > .env
    ```

@@ -16,23 +16,55 @@ import Header from './components/Header'
 import Error from './components/Error'
 import ContractBasedAccounts from './components/ContractBasedAccounts'
 import Filter from './components/Filter'
+import MAX_QUERY_AMOUNT from './constants'
 
-if (!process.env.REACT_APP_GRAPHQL_ENDPOINT) {
-  throw new Error('REACT_APP_GRAPHQL_ENDPOINT environment variable not defined')
+if (!process.env.REACT_APP_GRAPHQL_ENDPOINT_GNOSIS_SAFE) {
+  throw new Error(
+    'REACT_APP_GRAPHQL_ENDPOINT_GNOSIS_SAFE environment variable not defined'
+  )
 }
 
-const client = new ApolloClient({
-  uri: process.env.REACT_APP_GRAPHQL_ENDPOINT,
+if (!process.env.REACT_APP_GRAPHQL_ENDPOINT_ARGENT) {
+  throw new Error(
+    'REACT_APP_GRAPHQL_ENDPOINT_ARGENT environment variable not defined'
+  )
+}
+
+const clientDefault = new ApolloClient({
+  uri: process.env.REACT_APP_GRAPHQL_ENDPOINT_GNOSIS_SAFE,
   cache: new InMemoryCache(),
 })
 
-const GRAVATARS_QUERY = gql`
+const clientArgent = new ApolloClient({
+  uri: process.env.REACT_APP_GRAPHQL_ENDPOINT_ARGENT,
+  cache: new InMemoryCache(),
+})
+
+const GNOSIS_SAFE_QUERY = gql`
   query contractBasedAccounts(
     $where: ContractBasedAccount_filter!
     $orderBy: ContractBasedAccount_orderBy!
+    $first: Int
   ) {
     contractBasedAccounts(
-      first: 100
+      first: $first
+      where: $where
+      orderBy: $orderBy
+      orderDirection: asc
+    ) {
+      id
+    }
+  }
+`
+
+const ARGENT_QUERY = gql`
+  query contractBasedAccounts(
+    $where: ContractBasedAccount_filter!
+    $orderBy: ContractBasedAccount_orderBy!
+    $first: Int
+  ) {
+    contractBasedAccounts(
+      first: $first
       where: $where
       orderBy: $orderBy
       orderDirection: asc
@@ -66,9 +98,10 @@ class App extends Component {
 
   render() {
     const { withImage, withName, orderBy, showHelpDialog } = this.state
+    const first = MAX_QUERY_AMOUNT
 
     return (
-      <ApolloProvider client={client}>
+      <ApolloProvider client={clientDefault}>
         <div className="App">
           <Grid container direction="column">
             <Header onHelp={this.toggleHelpDialog} />
@@ -95,10 +128,11 @@ class App extends Component {
             <Grid item>
               <Grid container>
                 <Query
-                  query={GRAVATARS_QUERY}
+                  query={GNOSIS_SAFE_QUERY}
                   variables={{
                     where: {},
                     orderBy: orderBy,
+                    first: MAX_QUERY_AMOUNT,
                   }}
                 >
                   {({ data, error, loading }) => {
@@ -112,6 +146,36 @@ class App extends Component {
                     ) : (
                       <ContractBasedAccounts
                         contractBasedAccounts={data.contractBasedAccounts}
+                        name={'Gnosis Safe'}
+                      />
+                    )
+                  }}
+                </Query>
+              </Grid>
+            </Grid>
+            <Grid item>
+              <Grid container>
+                <Query
+                  query={ARGENT_QUERY}
+                  client={clientArgent}
+                  variables={{
+                    where: {},
+                    orderBy: orderBy,
+                    first: MAX_QUERY_AMOUNT,
+                  }}
+                >
+                  {({ data, error, loading }) => {
+                    return loading ? (
+                      <LinearProgress
+                        variant="query"
+                        style={{ width: '100%' }}
+                      />
+                    ) : error ? (
+                      <Error error={error} />
+                    ) : (
+                      <ContractBasedAccounts
+                        contractBasedAccounts={data.contractBasedAccounts}
+                        name={'Argent'}
                       />
                     )
                   }}

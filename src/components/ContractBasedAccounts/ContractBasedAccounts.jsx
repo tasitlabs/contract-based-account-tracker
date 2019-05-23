@@ -9,6 +9,8 @@ import {
   withStyles,
 } from '@material-ui/core'
 
+import MAX_QUERY_AMOUNT from '../../constants'
+
 const contractBasedAccountStyles = theme =>
   createStyles({
     actionArea: {
@@ -45,14 +47,16 @@ const contractBasedAccountsStyles = theme =>
     },
   })
 
-const ContractBasedAccounts = ({ classes, contractBasedAccounts }) => (
+const ContractBasedAccounts = ({ classes, contractBasedAccounts, name }) => (
   <Grid container direction="column" spacing={16}>
     <Grid item>
       <Typography variant="title" className={classes.title}>
-        Gnosis Safe
+        {name}
       </Typography>
       <Typography color="textSecondary">
-        {contractBasedAccounts.length} contract-based accounts
+        {contractBasedAccounts.length}
+        {contractBasedAccounts.length === MAX_QUERY_AMOUNT ? '+' : ''}{' '}
+        contract-based accounts
       </Typography>
     </Grid>
     <Grid item>
