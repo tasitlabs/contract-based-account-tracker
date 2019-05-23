@@ -19,9 +19,9 @@ npm start
 
 #### Connect this dapp to the subgraph
 
-1. Go to `https://thegraph.com/explorer/subgraph/tasitlabs/the-graph-hackathon-subgraph/`
-2. Copy the GraphQL HTTP endpoint (`hhttps://api.thegraph.com/subgraphs/name/tasitlabs/the-graph-hackathon-subgraph`)
+1. Go to `https://thegraph.com/explorer/subgraph/tasitlabs/gnosis-safe/`
+2. Copy the GraphQL HTTP endpoint (`hhttps://api.thegraph.com/subgraphs/name/tasitlabs/gnosis-safe`)
 3. Write it to `.env` in this directory:
    ```sh
-   echo "REACT_APP_GRAPHQL_ENDPOINT=https://api.thegraph.com/subgraphs/name/tasitlabs/the-graph-hackathon-subgraph" > .env
+   echo "REACT_APP_GRAPHQL_ENDPOINT=https://api.thegraph.com/subgraphs/name/tasitlabs/gnosis-safe" > .env
    ```
