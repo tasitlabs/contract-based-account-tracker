@@ -14,13 +14,11 @@ import {
 import './App.css'
 import Header from './components/Header'
 import Error from './components/Error'
-import Gravatars from './components/Gravatars'
+import ContractBasedAccounts from './components/ContractBasedAccounts'
 import Filter from './components/Filter'
 
 if (!process.env.REACT_APP_GRAPHQL_ENDPOINT) {
-  throw new Error(
-    'REACT_APP_GRAPHQL_ENDPOINT environment variable not defined'
-  )
+  throw new Error('REACT_APP_GRAPHQL_ENDPOINT environment variable not defined')
 }
 
 const client = new ApolloClient({
@@ -29,17 +27,17 @@ const client = new ApolloClient({
 })
 
 const GRAVATARS_QUERY = gql`
-  query gravatars($where: Gravatar_filter!, $orderBy: Gravatar_orderBy!) {
-    gravatars(
+  query contractBasedAccounts(
+    $where: ContractBasedAccount_filter!
+    $orderBy: ContractBasedAccount_orderBy!
+  ) {
+    contractBasedAccounts(
       first: 100
       where: $where
       orderBy: $orderBy
       orderDirection: asc
     ) {
       id
-      owner
-      displayName
-      imageUrl
     }
   }
 `
@@ -50,7 +48,7 @@ class App extends Component {
     this.state = {
       withImage: false,
       withName: false,
-      orderBy: 'displayName',
+      orderBy: 'id',
       showHelpDialog: false,
     }
   }
@@ -60,11 +58,11 @@ class App extends Component {
       ...state,
       showHelpDialog: !state.showHelpDialog,
     }))
-  };
+  }
 
   gotoQuickStartGuide = () => {
     window.location.href = 'https://tasit.io'
-  };
+  }
 
   render() {
     const { withImage, withName, orderBy, showHelpDialog } = this.state
@@ -99,10 +97,7 @@ class App extends Component {
                 <Query
                   query={GRAVATARS_QUERY}
                   variables={{
-                    where: {
-                      ...(withImage ? { imageUrl_starts_with: 'http' } : {}),
-                      ...(withName ? { displayName_not: '' } : {}),
-                    },
+                    where: {},
                     orderBy: orderBy,
                   }}
                 >
@@ -115,7 +110,9 @@ class App extends Component {
                     ) : error ? (
                       <Error error={error} />
                     ) : (
-                      <Gravatars gravatars={data.gravatars} />
+                      <ContractBasedAccounts
+                        contractBasedAccounts={data.contractBasedAccounts}
+                      />
                     )
                   }}
                 </Query>
@@ -128,7 +125,7 @@ class App extends Component {
             onClose={this.toggleHelpDialog}
             aria-labelledby="help-dialog"
           >
-            <DialogTitle id="help-dialog">{'What\'s Tasit?'}</DialogTitle>
+            <DialogTitle id="help-dialog">{"What's Tasit?"}</DialogTitle>
             <DialogContent>
               <DialogContentText>
                 There's more info about the Tasit project over at tasit.io.

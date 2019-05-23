@@ -6,7 +6,7 @@ const Header = ({ onHelp }) => (
   <Grid container direction="row" alignItems="center" spacing={16}>
     <Grid item>
       <Typography variant="title">
-        Tasit The Graph Hackathon Web Dapp
+        Contract-Based Account Tracker by Tasit
       </Typography>
     </Grid>
     <Grid item>

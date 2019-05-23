@@ -53,9 +53,6 @@ const Filter = ({
             onChange={event => onOrderBy && onOrderBy(event.target.value)}
           >
             <MenuItem value="id">ID</MenuItem>
-            <MenuItem value="imageUrl">Image</MenuItem>
-            <MenuItem value="displayName">Name</MenuItem>
-            <MenuItem value="owner">Owner</MenuItem>
           </Select>
         }
         label="Order By:"
