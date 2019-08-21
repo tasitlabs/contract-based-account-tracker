@@ -132,9 +132,7 @@ class App extends Component {
                       <ContractBasedAccounts
                         contractBasedAccounts={data.contractBasedAccounts}
                         name={'Gnosis Safe'}
-                        notes={
-                          "Note: The iOS and Android apps haven't moved over to the new contract version yet."
-                        }
+                        notes={''}
                       />
                     )
                   }}
